@@ -33,6 +33,7 @@ flutter:
   assets:
     - assets/icons/
     - assets/images/
+    - assets/icons/bottom_nav/
 
 flutter_native_splash:
   color: "#FFFFFF" # background color

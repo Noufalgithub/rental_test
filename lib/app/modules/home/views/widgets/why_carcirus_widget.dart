@@ -51,7 +51,7 @@ class WhyCarCirusWidget extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(height: 12),
+          SizedBox(height: 16),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
