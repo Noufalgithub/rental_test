@@ -2,6 +2,8 @@ import 'package:get/get.dart';
 
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
+import '../modules/select_car/bindings/select_car_binding.dart';
+import '../modules/select_car/views/select_car_view.dart';
 
 part 'app_routes.dart';
 
@@ -15,6 +17,11 @@ class AppPages {
       name: _Paths.HOME,
       page: () => const HomeView(),
       binding: HomeBinding(),
+    ),
+    GetPage(
+      name: _Paths.SELECT_CAR,
+      page: () => const SelectCarView(),
+      binding: SelectCarBinding(),
     ),
   ];
 }
