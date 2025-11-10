@@ -5,20 +5,23 @@ class CustomTextField extends StatelessWidget {
   const CustomTextField({
     super.key,
     required this.hintText,
-    required this.onTap,
+    this.onTap,
     this.readOnly,
     this.suffixIcon,
+    this.maxLine,
   });
 
   final String hintText;
-  final VoidCallback onTap;
+  final VoidCallback? onTap;
   final bool? readOnly;
   final Widget? suffixIcon;
+  final int? maxLine;
 
   @override
   Widget build(BuildContext context) {
     return TextField(
       readOnly: readOnly ?? false,
+      maxLines: maxLine,
       decoration: InputDecoration(
         hintText: hintText,
         suffixIcon: suffixIcon,

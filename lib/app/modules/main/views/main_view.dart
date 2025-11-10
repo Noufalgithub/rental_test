@@ -5,6 +5,9 @@ import 'package:get/get.dart';
 import 'package:rental_test/app/core/constants/app_colors.dart';
 import 'package:rental_test/app/modules/home/controllers/home_controller.dart';
 import 'package:rental_test/app/modules/home/views/home_view.dart';
+import 'package:rental_test/app/modules/my_bills/views/my_bills_view.dart';
+import 'package:rental_test/app/modules/my_car/views/my_car_view.dart';
+import 'package:rental_test/app/modules/profile/views/profile_view.dart';
 
 import '../controllers/main_controller.dart';
 
@@ -20,11 +23,11 @@ class MainView extends GetView<MainController> {
           case 0:
             return HomeView();
           case 1:
-            return SizedBox();
+            return MyCarView();
           case 2:
-            return SizedBox();
+            return MyBillsView();
           case 3:
-            return SizedBox();
+            return ProfileView();
           default:
             return HomeView();
         }
