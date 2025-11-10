@@ -70,7 +70,13 @@ class TimePickerBottomSheet {
                     // Tombol Apply
                     CustomButton(
                       title: 'Apply',
-                      onTap: () => Navigator.pop(context),
+                      onTap: () => Navigator.pop(
+                        context,
+                        TimeOfDay(
+                          hour: selectedDuration.inHours,
+                          minute: selectedDuration.inMinutes.remainder(60),
+                        ),
+                      ),
                       bgColor: AppColors.greenColor,
                     ),
 

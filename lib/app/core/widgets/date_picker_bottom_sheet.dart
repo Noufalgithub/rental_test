@@ -82,7 +82,7 @@ class DatePickerBottomSheet {
                     const SizedBox(height: 16),
                     CustomButton(
                       title: 'Apply',
-                      onTap: () => Navigator.pop(context),
+                      onTap: () => Navigator.pop(context, selectedDate),
                       bgColor: AppColors.greenColor,
                     ),
                     const SizedBox(height: 16),

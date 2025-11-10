@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:rental_test/app/core/constants/app_colors.dart';
 import 'package:intl/intl.dart';
 import 'package:rental_test/app/modules/select_car/views/widgets/custom_dialog.dart';
@@ -7,12 +8,19 @@ import '../../../../core/widgets/custom_button.dart';
 import '../../../../core/widgets/custom_text_field.dart';
 import '../../../../core/widgets/date_picker_bottom_sheet.dart';
 import '../../../../core/widgets/time_picker_bottom_sheet.dart';
+import '../../../home/controllers/home_controller.dart';
 
-class PickupDateSection extends StatelessWidget {
+class PickupDateSection extends StatefulWidget {
   const PickupDateSection({super.key});
 
   @override
+  State<PickupDateSection> createState() => _PickupDateSectionState();
+}
+
+class _PickupDateSectionState extends State<PickupDateSection> {
+  @override
   Widget build(BuildContext context) {
+    final controller = Get.find<HomeController>();
     final dateFormat = DateFormat('MMM d, EEEE');
     final timeFormat = DateFormat('hh:mm a');
 
@@ -37,19 +45,21 @@ class PickupDateSection extends StatelessWidget {
             style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
           ),
           const SizedBox(height: 8),
-          CustomTextField(
-            readOnly: true,
-            hintText: dateFormat.format(DateTime.now()),
-            suffixIcon: const Icon(Icons.calendar_month_outlined),
-            onTap: () async {
-              final selected = await DatePickerBottomSheet.show(
-                context,
-                DateTime.now(),
-              );
-              if (selected != null) {
-                // update value ke controller
-              }
-            },
+          Obx(
+            () => CustomTextField(
+              readOnly: true,
+              hintText: dateFormat.format(controller.selectedDate.value),
+              suffixIcon: const Icon(Icons.calendar_month_outlined),
+              onTap: () async {
+                final selected = await DatePickerBottomSheet.show(
+                  context,
+                  controller.selectedDate.value,
+                );
+                if (selected != null) {
+                  controller.setDate(selected);
+                }
+              },
+            ),
           ),
 
           const SizedBox(height: 12),
@@ -58,19 +68,29 @@ class PickupDateSection extends StatelessWidget {
             style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
           ),
           const SizedBox(height: 12),
-          CustomTextField(
-            readOnly: true,
-            hintText: timeFormat.format(DateTime.now()),
-            suffixIcon: const Icon(Icons.access_time),
-            onTap: () async {
-              final selected = await TimePickerBottomSheet.show(
-                context,
-                TimeOfDay.now(),
-              );
-              if (selected != null) {
-                // update value ke controller
-              }
-            },
+          Obx(
+            () => CustomTextField(
+              readOnly: true,
+              hintText: timeFormat.format(
+                DateTime(
+                  DateTime.now().year,
+                  DateTime.now().month,
+                  DateTime.now().day,
+                  controller.selectedTime.value.hour,
+                  controller.selectedTime.value.minute,
+                ),
+              ),
+              suffixIcon: const Icon(Icons.access_time),
+              onTap: () async {
+                final selected = await TimePickerBottomSheet.show(
+                  context,
+                  controller.selectedTime.value,
+                );
+                if (selected != null) {
+                  controller.setTime(selected);
+                }
+              },
+            ),
           ),
 
           const SizedBox(height: 16),
